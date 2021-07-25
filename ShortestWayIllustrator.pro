@@ -9,13 +9,25 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    calculatingmanager.cpp \
+    graph.cpp \
     graphspace.cpp \
+    identifiedobject.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    toolstateobject.cpp \
+    vertex.cpp \
+    verticesconnection.cpp
 
 HEADERS += \
+    calculatingmanager.h \
+    graph.h \
     graphspace.h \
-    mainwindow.h
+    identifiedobject.h \
+    mainwindow.h \
+    toolstateobject.h \
+    vertex.h \
+    verticesconnection.h
 
 FORMS += \
     mainwindow.ui
@@ -27,3 +39,6 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources/resources.qrc
