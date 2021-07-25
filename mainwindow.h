@@ -17,13 +17,18 @@ public:
     ~MainWindow();
 
 protected:
-
+    int numOfConnections;
+    int numOfNotConnectingsVertices;
+    int numOfVertices;
 private slots:
     void on_selectToolButton_clicked();
     void on_moveToolButton_clicked();
     void on_addVertexToolButton_clicked();
     void on_addConnectionToolButton_clicked();
 
+    void updateNumOfConnections(int);
+    void updateNumOfNotConnectingsVertices(int);
+    void updateNnumOfVertices(int);
 private:
     Ui::MainWindow *ui;
 

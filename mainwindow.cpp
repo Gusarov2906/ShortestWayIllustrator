@@ -7,7 +7,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    numOfConnections = 0;
+    numOfNotConnectingsVertices = 0;
+    numOfVertices = 0;
+
+    ui->numOfConnections->setText(QString::number(numOfConnections));
+    ui->numOfNotConnectingVertices->setText(QString::number(numOfNotConnectingsVertices));
+    ui->numOfVertices->setText(QString::number(numOfVertices));
+
     connect(this, &MainWindow::sendNewToolState, ui->graphSpace, &GraphSpace::getNewToolState);
+    connect(ui->graphSpace, &GraphSpace::updateNumOfConnections, this, &MainWindow::updateNumOfConnections);
+    connect(ui->graphSpace, &GraphSpace::updateNumOfNotConnectingsVertices, this, &MainWindow::updateNumOfNotConnectingsVertices);
+    connect(ui->graphSpace, &GraphSpace::updateNnumOfVertices, this, &MainWindow::updateNnumOfVertices);
 }
 
 MainWindow::~MainWindow()
@@ -38,4 +49,22 @@ void MainWindow::on_addConnectionToolButton_clicked()
 {
     this->toolState = ToolState::AddConnectionTool;
     emit sendNewToolState(this->toolState);
+}
+
+void MainWindow::updateNumOfConnections(int val)
+{
+    this->numOfConnections += val;
+    ui->numOfConnections->setText(QString::number(numOfConnections));
+}
+
+void MainWindow::updateNumOfNotConnectingsVertices(int val)
+{
+    this->numOfNotConnectingsVertices += val;
+    ui->numOfNotConnectingVertices->setText(QString::number(numOfNotConnectingsVertices));
+}
+
+void MainWindow::updateNnumOfVertices(int val)
+{
+    this->numOfVertices += val;
+    ui->numOfVertices->setText(QString::number(numOfVertices));
 }

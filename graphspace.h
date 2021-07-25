@@ -2,11 +2,11 @@
 #define GRAPHSPACE_H
 
 #include <QWidget>
-
+#include <QScrollArea>
 #include "graph.h"
 #include "toolstateobject.h"
 
-class GraphSpace : public QWidget, public ToolStateObject
+class GraphSpace : public QScrollArea, public ToolStateObject
 {
     Q_OBJECT
 public:
@@ -15,16 +15,23 @@ public:
     void addConnection(VerticesConnection* connection);
 protected:
     Graph* graph;
-
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
 
+    Vertex* mainSelect;
+    Vertex* prevSelect;
+
+    bool isLastSelectNull;
+
 public slots:
     void getNewToolState(int);
+    void getMainSelect(int);
 signals:
     void sendNewToolState(int);
-
+    void updateNumOfConnections(int);
+    void updateNumOfNotConnectingsVertices(int);
+    void updateNnumOfVertices(int);
 };
 
 #endif // GRAPHSPACE_H

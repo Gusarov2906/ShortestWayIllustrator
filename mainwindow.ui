@@ -37,7 +37,46 @@
      <number>2</number>
     </property>
     <item>
-     <widget class="GraphSpace" name="graphSpace" native="true"/>
+     <widget class="GraphSpace" name="graphSpace">
+      <property name="maximumSize">
+       <size>
+        <width>2560</width>
+        <height>1440</height>
+       </size>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>2560</width>
+         <height>1440</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>2560</width>
+         <height>1440</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>2560</width>
+         <height>1440</height>
+        </size>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+      </widget>
+     </widget>
     </item>
     <item>
      <widget class="QFrame" name="mainPanel">
@@ -391,7 +430,7 @@
  <customwidgets>
   <customwidget>
    <class>GraphSpace</class>
-   <extends>QWidget</extends>
+   <extends>QScrollArea</extends>
    <header>graphspace.h</header>
    <container>1</container>
   </customwidget>
