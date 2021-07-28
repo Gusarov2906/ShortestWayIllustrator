@@ -9,6 +9,7 @@ GraphSpace::GraphSpace(QWidget *parent) : QScrollArea(parent), ToolStateObject()
     this->mainSelect = nullptr;
     this->prevSelect = nullptr;
     this->isLastSelectNull = true;
+    this->prevId = -1;
 }
 
 void GraphSpace::addVertex(Vertex *vertex)
@@ -134,6 +135,7 @@ void GraphSpace::getNewToolState(int toolState)
 
 void GraphSpace::getMainSelect(int id)
 {
+    //qDebug() << "d" << id;
     switch (this->toolState) {
     case ToolState::SelectingTool:
     {
@@ -155,31 +157,47 @@ void GraphSpace::getMainSelect(int id)
     }
     case ToolState::AddConnectionTool:
     {
-
-        if (mainSelect != nullptr)
+        qDebug() << "id" << id;
+        if (prevId != id)
         {
-            if (prevSelect != nullptr)
+            if (prevSelect == nullptr)
             {
-                prevSelect->makeUnselected();
+                prevSelect = graph->getVertex(id);
+                prevSelect->makeSelected();
             }
-            prevSelect = mainSelect;
-            prevSelect->makeSelected();
-            //qDebug() << "set prev select";
+            else
+            {
+                if(mainSelect != nullptr && mainSelect != prevSelect)
+                {
+                    prevSelect->makeUnselected();
+                    prevSelect = &*mainSelect;
+                }
+                if (graph->getVertex(id) != nullptr)
+                {
+                    if (graph->getVertex(id) != mainSelect)
+                    {
+                        mainSelect = graph->getVertex(id);
+                        mainSelect->makeSelected();
+                    }
+                }
+                qDebug() << mainSelect << prevSelect;
+            }
+
+
+            if (mainSelect != nullptr && prevSelect != nullptr && mainSelect!=prevSelect)
+            {
+                qDebug() << "New connection" << prevSelect->getId() << "to" << mainSelect->getId();
+
+                emit openCreateConnectionDialog(prevSelect->getId(), mainSelect->getId());
+                //mainSelect->makeSelected();
+                //mainSelect = nullptr;
+    //            mainSelect->clearFocus();
+    //            mainSelect = nullptr;
+    //            prevSelect->makeUnselected();
+    //            prevSelect = nullptr;
+            }
         }
-
-        mainSelect = this->graph->getVertex(id);
-
-        //qDebug() << mainSelect;
-
-        if (mainSelect != nullptr)
-        {
-            mainSelect->setFocus();
-        }
-
-        if (mainSelect != nullptr && prevSelect != nullptr)
-        {
-            qDebug() << "New connection" << prevSelect->getId() << "to" << mainSelect->getId();
-        }
+        prevId = id;
         //qDebug() << mainSelect;
         break;
     }

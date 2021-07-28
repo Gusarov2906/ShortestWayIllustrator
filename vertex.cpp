@@ -45,7 +45,10 @@ void Vertex::focusInEvent(QFocusEvent *event)
 {
     //qDebug() << "focusInEvent";
     Q_UNUSED(event);
-    makeSelected();
+    if (this->toolState == ToolState::SelectingTool)
+    {
+        makeSelected();
+    }
     emit sendMainSelect(this->id);
 }
 
@@ -53,8 +56,12 @@ void Vertex::focusOutEvent(QFocusEvent *event)
 {
     //qDebug() << "focusInEvent";
     Q_UNUSED(event);
-    makeUnselected();
-    emit sendMainSelect(-1);
+    if (this->toolState == ToolState::SelectingTool)
+    {
+        makeUnselected();
+
+        emit sendMainSelect(-1);
+    }
 }
 
 void Vertex::mousePressEvent(QMouseEvent *event)

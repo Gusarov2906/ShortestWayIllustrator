@@ -22,6 +22,7 @@ protected:
     Vertex* mainSelect;
     Vertex* prevSelect;
 
+    int prevId;
     bool isLastSelectNull;
 
 public slots:
@@ -32,6 +33,7 @@ signals:
     void updateNumOfConnections(int);
     void updateNumOfNotConnectingsVertices(int);
     void updateNnumOfVertices(int);
+    void openCreateConnectionDialog(int, int);
 };
 
 #endif // GRAPHSPACE_H

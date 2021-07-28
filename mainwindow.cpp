@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->graphSpace, &GraphSpace::updateNumOfConnections, this, &MainWindow::updateNumOfConnections);
     connect(ui->graphSpace, &GraphSpace::updateNumOfNotConnectingsVertices, this, &MainWindow::updateNumOfNotConnectingsVertices);
     connect(ui->graphSpace, &GraphSpace::updateNnumOfVertices, this, &MainWindow::updateNnumOfVertices);
+    connect(ui->graphSpace, &GraphSpace::openCreateConnectionDialog, this, &MainWindow::openCreateConnectionDialog);
 }
 
 MainWindow::~MainWindow()
@@ -67,4 +68,14 @@ void MainWindow::updateNnumOfVertices(int val)
 {
     this->numOfVertices += val;
     ui->numOfVertices->setText(QString::number(numOfVertices));
+}
+
+void MainWindow::openCreateConnectionDialog(int from, int to)
+{
+    if (createConnectionDialog != nullptr)
+    {
+        delete  createConnectionDialog;
+    }
+    createConnectionDialog = new CreateConnectionDialog(from, to, this);
+    createConnectionDialog->show();
 }

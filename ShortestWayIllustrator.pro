@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     calculatingmanager.cpp \
+    createconnectiondialog.cpp \
     graph.cpp \
     graphspace.cpp \
     identifiedobject.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     calculatingmanager.h \
+    createconnectiondialog.h \
     graph.h \
     graphspace.h \
     identifiedobject.h \
@@ -30,7 +32,8 @@ HEADERS += \
     verticesconnection.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    createconnectiondialog.ui
 
 TRANSLATIONS += \
     ShortestWayIllustrator_en_001.ts

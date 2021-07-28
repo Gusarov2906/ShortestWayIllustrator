@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "toolstateobject.h"
+#include "createconnectiondialog.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,9 +31,11 @@ private slots:
     void updateNumOfConnections(int);
     void updateNumOfNotConnectingsVertices(int);
     void updateNnumOfVertices(int);
+
+    void openCreateConnectionDialog(int, int);
 private:
     Ui::MainWindow *ui;
-
+    CreateConnectionDialog* createConnectionDialog;
 signals:
     void sendNewToolState(int);
 };
