@@ -28,6 +28,7 @@ protected:
 public slots:
     void getNewToolState(int);
     void getMainSelect(int);
+    void createConnection(int, int, int);
 signals:
     void sendNewToolState(int);
     void updateNumOfConnections(int);

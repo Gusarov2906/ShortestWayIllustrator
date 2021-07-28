@@ -77,5 +77,6 @@ void MainWindow::openCreateConnectionDialog(int from, int to)
         delete  createConnectionDialog;
     }
     createConnectionDialog = new CreateConnectionDialog(from, to, this);
+    connect(createConnectionDialog, &CreateConnectionDialog::createConnection, ui->graphSpace, &GraphSpace::createConnection);
     createConnectionDialog->show();
 }

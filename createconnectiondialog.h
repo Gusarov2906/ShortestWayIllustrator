@@ -14,8 +14,18 @@ public:
     CreateConnectionDialog(int from, int to, QWidget *parent = nullptr);
     ~CreateConnectionDialog();
 
+signals:
+    void createConnection(int, int, int);
+private slots:
+    void on_createButton_clicked();
+
+    void on_cancelButton_clicked();
+
 private:
     Ui::CreateConnectionDialog *ui;
+    int lenghtOfWay;
+    int wayFrom;
+    int wayTo;
 };
 
 #endif // CREATECONNECTIONDIALOG_H

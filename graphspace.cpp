@@ -180,13 +180,13 @@ void GraphSpace::getMainSelect(int id)
                         mainSelect->makeSelected();
                     }
                 }
-                qDebug() << mainSelect << prevSelect;
+                //qDebug() << mainSelect << prevSelect;
             }
 
 
             if (mainSelect != nullptr && prevSelect != nullptr && mainSelect!=prevSelect)
             {
-                qDebug() << "New connection" << prevSelect->getId() << "to" << mainSelect->getId();
+                //qDebug() << "New connection" << prevSelect->getId() << "to" << mainSelect->getId();
 
                 emit openCreateConnectionDialog(prevSelect->getId(), mainSelect->getId());
                 //mainSelect->makeSelected();
@@ -208,4 +208,8 @@ void GraphSpace::getMainSelect(int id)
     }
 }
 
+void GraphSpace::createConnection(int from, int to, int lenght)
+{
+    qDebug() << "create from" << graph->getVertex(from) << graph->getVertex(from)->getId() << "to" << graph->getVertex(to)<< graph->getVertex(to)->getId() << "len" << lenght;
+}
 
